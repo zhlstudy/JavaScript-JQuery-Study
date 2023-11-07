@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script>
+		let arr = [99, 88, 66, 55, 500,33, 22, 18, 100, 200];
+		// arr.push(900);//push  自动添加长度加一
+		// var a= arr.pop();//pop  最后一个元素删除 
+		// console.log(a);
+		
+		// delete arr[4]; //只删除数据 
+		// console.log(arr)
+
+		let max = arr[0];
+
+		for (let i = 1; i < arr.length; i++) {
+			if (arr[i] > max) {
+				max = arr[i]
+			}
+		}
+		console.log("最大值为： " + max);
+		
+		
+	</script>
+	<body>
+	</body>
+</html>

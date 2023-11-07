@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script>
+		/**
+		 * 实参可以是任意类型，也可以是一个对象
+		 *   当我们参数过多时，可以将参数封装到一个对象中，然后通过对象传递
+		 */
+		function sayHello(o){
+			console.log("我是"+o.name+",今年我"+o.age+"岁了，"+"我是一个"+o.gender+"人,家在"+o.address)
+		}
+		
+		var obj={
+			name:"孙悟空",
+			age:22,
+			gender:"男",
+			address:"花果山"
+		};
+		
+		//sayHello(obj);
+		//function fun(a){
+		//	a(obj);
+		//}
+		//fun(sayHello);
+		
+		function mianji(r){
+			return 3.14*r*r;
+		}
+		function fun(a){
+			console.log("a = "+a);
+		}
+		fun(mianji);
+		//a = function mianji(r){
+		//			return 3.14*r*r;
+		//		}
+		fun(mianji(10));
+		//a = 314
+		
+		/**
+		 * mianji()
+		 *   -调用函数
+		 *   -相当于使用的函数返回值
+		 * mianji
+		 *   -函数对象
+		 *   -相当于直接使用函数对象
+		 */
+	</script>
+	<body>
+	</body>
+</html>

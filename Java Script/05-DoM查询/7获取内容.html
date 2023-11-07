@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#aaa li {
+				list-style: none;
+				float: left;
+				width: 260px;
+				height: 30px;
+				line-height: 30px;
+				border: 1px black solid;
+				text-align: center;
+			}
+			#nrDiv{
+				position: absolute;
+				top: 50px;
+				left: 50px; 
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<ul id="aaa">
+				<li id="kj">科技</li>
+				<li id="ty">体育</li>
+				<li id="ls">历史</li>
+			</ul>
+		</div>
+		<div id="nrDiv"></div>
+		<script>
+			var li = document.getElementsByTagName('li');
+
+
+			var nrDiv = document.getElementById('nrDiv');
+			//var  就不行
+			for (let i = 0; i < li.length; i++) {
+				li[i].onmousemove = function() {
+					//将所有li恢复为默认颜色
+					for (var j = 0; j < li.length; j++) {
+						li[j].style.backgroundColor = '';
+					}
+					this.style.backgroundColor = '#f00';
+					nrDiv.innerHTML = li[i].innerText + "新闻！";
+				}
+			}
+		</script>
+
+	</body>
+</html>

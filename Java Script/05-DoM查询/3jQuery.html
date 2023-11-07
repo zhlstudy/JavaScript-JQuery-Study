@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../jquery.js"></script>
+		<script>
+			$(function(){
+				//获取全选框
+				var $checkAll=$("#checkedAllBox");
+				//获取四个多选框
+				var $items=$("[name=items]")
+				
+				$checkAll.click(function(){
+					
+					$items.prop("checked",this.checked)					
+				});
+				
+				//使得四个多选框同步
+				$items.click(function(){
+					//判断是否全选
+					// $items.is(":not(:checked)")
+					$checkAll.prop("checked",!$items.is(":not(:checked)"))
+				})
+				
+				//按钮
+				$("#checkedAllbtn").click(function(){
+					//add()不会影响原来的jQuery对象
+					$items.add($checkAll).prop("checked",true)
+				})
+				
+				$("#checkedNobtn").click(function(){
+					//add()不会影响原来的jQuery对象
+					$items.add($checkAll).prop("checked",false)
+				})
+				
+				$("#checkedRevbtn").click(function(){
+					$items.prop("checked",function(index,oldVal){
+						return !oldVal;
+					})
+					$checkAll.prop("checked",!$items.is(":not(:checked)"))
+				})
+				
+				$("#sendBtn").click(function(){
+					//打印
+					$items.filter(":checked").each(function(){
+						alert(this.value)
+					})
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<form action="" method="post">
+			你爱好的运动是？<input type="checkbox" name="" id="checkedAllBox"/>全选/全不选
+			<br>
+			<input type="checkbox" name="items" id="" value="足  球" />足球
+			<input type="checkbox" name="items" id="" value="篮  球" />篮球
+			<input type="checkbox" name="items" id="" value="羽毛球" />羽毛球
+			<input type="checkbox" name="items" id="" value="乒乓球" />乒乓球
+			<br>
+			<input type="button"  id="checkedAllbtn" value="全  选" />
+			<input type="button"  id="checkedNobtn" value="全不选" />
+			<input type="button"  id="checkedRevbtn" value="反  选" />
+			<input type="button"  id="sendBtn" value="提  交" />
+		</form>
+	</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			
+// --一般的if语句
+			// var score=prompt("请输入你的成绩(0~100): ");
+			// //判断是否合法
+			// if(score>100 || score<0 || isNaN(score)){
+			// 	alert("拉出去枪毙了！~~~~");
+			// }else{
+			// 	//根据score来判断给小明什么奖励
+			// 	if(score==100){
+			// 		//奖励一台宝马
+			// 		alert("宝马拿去开！");
+			// 	}else if(score>=80){
+			// 		//奖励一个手机
+			// 		alert("手机 拿去玩！");
+			// 	}else if(score>=60){
+			// 		//奖励一个手机
+			// 		alert("参考书 拿去看！");
+			// 	}else{
+			// 		//奖励一个手机
+			// 		alert("给你一棍子！！！");
+			// 	}
+			// }
+
+
+
+			while (true) {
+				var score = prompt("请输入你的成绩(0~100): ");
+				//判断用户输入值是否合法
+				if (score >= 0 && score <= 100) {
+					//满足该条件则证明用户输入合法
+					break;
+				}
+				alert("请输入有效的数值！！！");
+			}
+
+
+			//判断是否合法
+			// if(score>100 || score<0 || isNaN(score)){
+			// 	alert("拉出去枪毙了！~~~~");
+			// }else{
+			//根据score来判断给小明什么奖励
+			if (score == 100) {
+				//奖励一台宝马
+				alert("宝马拿去开！");
+			} else if (score >= 80) {
+				//奖励一个手机
+				alert("手机 拿去玩！");
+			} else if (score >= 60) {
+				//奖励一个手机
+				alert("参考书 拿去看！");
+			} else {
+				//奖励一个手机
+				alert("给你一棍子！！！");
+			}
+			// }
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

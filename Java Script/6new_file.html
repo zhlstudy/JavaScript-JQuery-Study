@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+	<body>
+		<img src="./img/4.png" alt="" />
+		<button id="s">上一张<button>
+		<button id="w">下一张<button>
+		
+		
+		<script>
+			let imge = document.getElementsByTagName("img")[0];
+			let next = document.querySelector("#w");
+			let shang = document.querySelector("#s");
+			let imgs = ['./img/4.png', './img/5.jpg', './img/6.jpg']
+			var a = 0;
+			next.addEventListener("click", function() {
+				a++;
+				if (a > imgs.length - 1) {
+					a = 0;
+				}
+				imge.src = imgs[a];
+			});
+		
+			shang.addEventListener("click", function() {
+				a--;
+				if (a < 0) {
+					a = imgs.length - 1;
+				}
+				imge.src = imgs[a];
+			});
+		</script>
+
+	</body>
+	
+	<html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+    <style>
+          .wapper{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            position: relative;
+          }
+          .box{
+            width: 20px;
+            height: 20px;
+            background-color: blue;
+            position: absolute;
+          }
+      
+    </style>
+    <script>
+          $(document).ready(
+            function(){
+                //右下按钮逻辑
+                $('#rb').click(function(){
+                    $('.box').removeAttr('style');
+                    $('.box').css({
+                        right:0,
+                        bottom:0
+                    })
+                })
+                //左上
+                $('#lt').click(function(){
+                    $('.box').removeAttr('style');
+                    $('.box').css({
+                        left:0,
+                        top:0
+                    })
+                })
+                // 左下
+                $('#lb').click(function(){
+                    $('.box').removeAttr('style');
+                    $('.box').css({
+                        left:0,
+                        bottom:0
+                    })
+                })
+
+                  // 右上
+                  $('#rt').click(function(){
+                    $('.box').removeAttr('style');
+                    $('.box').css({
+                        right:0,
+                        top:0
+                    })
+                })
+            }
+          );
+    </script>
+</head>
+<body>
+      <button  id="lt">左上</button>
+      <button  id="rt">右上</button>
+      <button  id="lb">左下</button>
+      <button  id="rb">右下</button>
+      <div class="wapper">
+         <div class="box">
+
+         </div>
+      </div>
+</body>
+</html>

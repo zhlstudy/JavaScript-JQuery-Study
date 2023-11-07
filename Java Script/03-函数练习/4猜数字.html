@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			//var a=Math.round( Math.random()*(10-1)+1);
+			function getrandom(m,n){
+				return Math.round( Math.random()*(n-m)+m);
+			};
+			var a=getrandom(1,10);
+			
+			//console.log("a ="+a);
+			while(true){				
+				var b=prompt("请同学输入一个数： ");
+				
+				if(a==b){
+					alert("恭喜你猜对了！");
+					break;
+				}
+				else if(a>b){
+					alert("你猜小了！");
+				}
+				else{
+					alert("你猜大了！");
+				}
+			}
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

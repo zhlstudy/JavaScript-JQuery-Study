@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box1{
+				width: 100px;
+				height: 100px;
+				background-color: aqua;
+				position: absolute;
+				left: 0;
+			}
+			#box{
+				width: 100px;
+				height: 100px;
+				background-color: greenyellow;
+				position: absolute;
+				left: 0;
+				top: 200px;
+			}
+			#xia{
+				width: 2px;
+				height: 100%;
+				background-color: black;
+				position: absolute;
+				left: 798px;
+				top: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" id="btn1" value="box1向右移动"> 
+		<input type="button" id="btn2" value="box1向左移动"> 
+		<input type="button" id="btn3" value="box2向右移动"> 
+		<br>
+		<br>
+		<div id="box1"></div>
+		<div id="box"></div>
+		
+		
+		
+		
+		<div id="xia">
+			
+		</div>
+		
+		<script>
+			//var box1=document.getElementById('box1');
+			var box2=document.getElementById('box');
+			
+			
+			var btn1=document.getElementById('btn1');
+			var btn2=document.getElementById('btn2');
+			btn1.onclick=function(){
+				move(box1,800,10);
+			}
+			btn2.onclick=function(){
+				move(box1,0,10);
+			}
+			
+			var btn3=document.getElementById('btn3');
+			btn3.onclick=function(){				
+				move(box2,800,10)
+			}
+			
+			//动画全局标识
+			    //    但是只能开启一个    要是需要多个定时器就不行
+			//var timer;
+			/**
+			 * 参数：
+			 *  obj  要执行动画的对象
+			 *  target 执行动画目标
+			 *  speed 移动的速度
+			 */
+			function move(obj,target,speed){
+				clearInterval(obj.timer);
+				//获取元素当前位置   取整
+				var current=parseInt(getStyle(obj,"left"));
+				
+				
+				//判断速度的正负值
+				if(current>target){
+					speed=-speed;
+				}
+				
+				//开启一个动画
+				//向执行动画的对象中添加一个timer属性，用来保存它自己的定时器标识  这样可以做到相互不影响
+				obj.timer=setInterval(function(){
+					//            取整
+					var oldVaue=parseInt(getStyle(obj,"left"));
+					
+					var newValue=oldVaue+speed;
+					
+					if((speed<0&& newValue<target)|| (speed>0&&newValue>target) ){
+						newValue=target
+					}
+					
+					obj.style.left=newValue+'px';
+					
+					if(newValue==target){
+						clearInterval(obj.timer)
+					}
+				},30);						
+			}
+			
+			
+			/**
+			 * 
+			 * 获取当前元素的 样式
+			 * @param {Object} obj 对象
+			 * @param {Object} name 获取什么的样式
+			 */
+			function getStyle(obj,name){
+				if(window.getComputedStyle){
+					return getComputedStyle(obj,null)[name];
+				}else{
+					return obj.currentStyle[name]
+				}
+			}
+		</script>
+		
+	</body>
+</html>

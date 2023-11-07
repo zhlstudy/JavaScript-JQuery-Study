@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#box{
+				width: 100px;
+				height: 100px;
+				background-color: aqua;
+				position: absolute;
+			}
+		</style>
+		
+		<script>
+			window.onload=function(){
+				/** 
+				 * 拖拽流程 
+				 *      1.onmousedown   鼠标左键按下事件
+				 *      2.onmousemove   鼠标移动事件
+				 *      3.onmouseup     鼠标松开事件
+				 */
+				var box=document.getElementById('box');
+				box.onmousedown=function(event){ 
+					event=event||window.event;
+					//div的偏移量 鼠标.clientX - 元素offsetLeft
+					//div的偏移量 鼠标.clientY - 元素offsetTop
+					var ol=event.clientX-box.offsetLeft;
+					var ot=event.clientY-box.offsetTop;
+						
+					//移动是在document中移动
+					document.onmousemove=function(event){
+						event=event||window.event;
+						//获取鼠标移动的坐标
+						var left=event.clientX;
+						var top=event.clientY;
+						
+						//修改a的位置
+						box.style.left=(left-ol)+'px';
+						box.style.top=(top-ot)+'px';
+					}
+				};
+				
+				//鼠标左键松开时事件
+				document.onmouseup=function(){
+					//鼠标松开时    将onmousemove移动取消
+					document.onmousemove=null;
+					
+					document.onmouseup=null;//执行完松开事件   也不将存在
+				};
+				
+				
+			};
+		</script>
+	</head>
+	
+	<body>
+		
+		<div id="box">
+			
+		</div>
+	</body>
+</html>

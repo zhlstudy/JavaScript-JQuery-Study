@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../jquery.js"></script>
+		<script>
+			$(function(){
+				//删除
+				$(document).on("click","a",function(){
+					//在当前元素的祖先元素   是谁！
+					var $tr=$(this).parents('tr');
+					var $name=$tr.children()[0].textContent;//.innerText
+					
+					if(confirm("确认删除【"+$name+"】嘛")){
+						$tr.remove();
+					}
+					
+					return false;
+				});
+				
+				//添加
+				$("#addEmpButton").on("click",function(){
+					//获取输入框的东西
+					var $N=$("#emName").val();
+					var $E=$("#Email").val();
+					var $S=$("#Salary").val();					
+					//console.log($N+'--'+$E+'--'+$S)
+					
+					// $("table").append(
+					// "<tr><th>"+
+					// $N+
+					// "</th><th>"+
+					// $E+"</th><th>"+
+					// $S+"</th><th><a href='javascript:;'>Delete</a></th></tr>")   有注入的风险
+					
+					
+					//创建tr
+					var $Ctr=$(
+					"<tr><td></td><td></td><td></td><td><a href='javascript:;'>Delete</a></td></tr>"
+					)
+					//添加内容
+					var $tds=$Ctr.find("td")
+					$tds.eq(0).text($N)
+					$tds.eq(1).text($E)
+					$tds.eq(2).text($S)
+					$("tbody").append($Ctr)
+				})
+				
+				
+			});
+			
+		</script>
+		
+	</head>
+	<body>
+	<table id="employeelable">
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Salary</th>
+			<th>&nbsp</th>
+		</tr>
+		<tr>
+			<th>Tom</th>
+			<th>tom@tom.com</th>
+			<th>5000</th>
+			<th><a href="delteEmp?id="001">Delete</a></th>
+		</tr>
+		<tr>
+			<th>Jou</th>
+			<th>jou@jou.com</th>
+			<th>6000</th>
+			<th><a href="delteEmp?id="002">Delete</a></th>
+		</tr>
+		<tr>
+			<th>Bou</th>
+			<th>Bou@Bou.com</th>
+			<th>9000</th>
+			<th><a href="delteEmp?id="003">Delete</a></th>
+		</tr>
+	</table>
+	<div id="formDiv">
+		<h4>添加新员工</h4>
+		<table>
+			<tr>
+				<td class="word">name: </td>
+				<td class="inp">
+					<input type="txet" name="emName" id="emName"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="word">Email: </td>
+				<td class="inp">
+					<input type="txet" name="Email" id="Email"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="word">Salary: </td>
+				<td class="inp">
+					<input type="txet" name="Salary" id="Salary"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<button id="addEmpButton" value="abc">Submit</button>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+		
+	</body>
+</html>

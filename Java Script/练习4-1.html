@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+    <script>
+          $(document).ready(
+            function(){
+								
+                $('#shang').click(
+                    function(){		
+						let q=$(".box").offset().top
+						q-=10						
+						$(".box").css({top:q})
+                    }
+                );
+				
+				$('#xia').click(
+				    function(){						
+						let q=$(".box").offset().top
+						q+=10			
+						$(".box").css({top:q})
+				    }
+				);
+				
+				$('#zuo').click(
+				    function(){					
+						let q=$(".box").offset().left
+						q-=10					
+						$(".box").css({left:q})
+				    }
+				);
+				
+				$('#you').click(
+				    function(){						
+						let q=$(".box").offset().left
+						q+=10						
+						$(".box").css({left:q})
+				    }
+				);
+            }
+          );
+    </script>
+</head>
+<body>
+     <button id='shang'>向上</button>
+	 <button id="xia">向下</button>
+	 <button id="zuo">向左</button>
+	 <button id="you">向右</button>
+       <div class="wapper">
+              <div class="box"></div>
+        </div>
+
+        <style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+             .wapper{
+                width: 300px;
+                height: 300px;
+                background-color: blue;           
+                position: relative;  
+             }
+             .box{
+                width: 50px;
+                height: 50px;
+                background-color: black;
+                position: absolute;
+                top: 200px;
+                left: 200px;
+                transform: translateY(-50%);   
+             }
+
+
+        </style>
+
+</body>
+</html>

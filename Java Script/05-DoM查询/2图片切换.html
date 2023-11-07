@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#outer{
+				width: 400px;
+				margin: 50px auto;
+				text-align: center;
+			}
+		</style>
+		<script>
+			window.onload=function(){
+				var prev=document.getElementById("prev");
+				var next=document.getElementById("next");
+				
+				var img=document.getElementsByTagName("img")[0];
+				
+				
+				var arr = ["../img/4.png", "../img/5.jpg", "../img/6.jpg"];
+				
+				//创建一个变量，来保存正在显示的图片索引
+				var index=0;
+				
+				var info=document.getElementById("info");
+				info.innerHTML="一共"+arr.length+"张图片,当前显示"+(index+1)+"张图！";
+				
+				prev.onclick=function(){
+					//img.src=arr[0];
+					/**
+					 * 切换到上一张，索引自减
+					 */
+					index--;
+					
+					//判断index是否小于0
+					if(index<0){
+						index=arr.length-1;
+					}
+					
+					img.src=arr[index];
+					
+					info.innerHTML="一共"+arr.length+"张图片,当前显示"+(index+1)+"张图！";
+				};
+				
+				next.onclick=function(){
+					//img.src=arr[1];
+					/**
+					 * 切换到下一张，索引自减
+					 */
+					index++;
+					
+					//判断index是否大于3
+					if(index>arr.length-1){
+						index=0;
+					}
+					
+					img.src=arr[index];
+						
+					info.innerHTML="一共"+arr.length+"张图片,当前显示"+(index+1)+"张图！";
+				};		
+			}
+		</script>
+		
+	</head>	
+	<body>
+		<div id="outer">
+			<p id="info">一共3张图片，当前第1张</p>
+			<img src="../img/4.png" alt="" style="width: 400px; height: 500px;">
+			<button id="prev">上一张</button>
+			<button id="next">下一张</button>
+		</div>
+		<!-- <script>
+			var prev=document.getElementById("prev");
+			var next=document.getElementById("next");
+			
+			var img=document.getElementsByTagName("img")[0];
+			//创建一个变量，来保存正在显示的图片索引
+			var index=0;
+			
+			var arr = ["../img/4.png", "../img/5.jpg", "../img/6.jpg"];
+			
+			var info=document.getElementById("info");
+			info.innerHTML="一共"+arr.length+"张图片,当前显示"+(index+1)+"张图！";
+			
+			prev.onclick=function(){
+				//img.src=arr[0];
+				/**
+				 * 切换到上一张，索引自减
+				 */
+				index--;
+				
+				//判断index是否小于0
+				if(index<0){
+					index=arr.length-1;
+				}
+				
+				img.src=arr[index];
+				
+				info.innerHTML="一共"+arr.length+"张图片,当前显示"+(index+1)+"张图！";
+			};
+			
+			next.onclick=function(){
+				//img.src=arr[1];
+				/**
+				 * 切换到下一张，索引自减
+				 */
+				index++;
+				
+				//判断index是否大于3
+				if(index>arr.length-1){
+					index=0;
+				}
+				
+				img.src=arr[index];
+					
+					info.innerHTML="一共"+arr.length+"张图片,当前显示"+(index+1)+"张图！";
+			};		
+		</script> -->
+	</body>
+</html>

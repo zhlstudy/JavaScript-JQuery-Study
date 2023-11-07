@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<style>
+		.wai{
+			width: 600px;
+			height: 600px;
+			margin: auto;
+			border: 1px green solid;
+		}
+		#par{
+			width: 500px;
+			height: 400px;
+			
+			margin: 50px 0 0 50px;
+			border: 1px green solid;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wai">
+		<div id="par">
+		   <span>留言版块：</span>		  
+		</div>
+		<button id="add">请留言</button>
+		<input  id="msg"  />
+	</div>
+      
+	  
+    <script>
+        let  btn=document.getElementById('add')
+        let  msg=document.querySelector("#msg");
+       
+	    var a=1;
+        btn.addEventListener("click",function(){			
+			if(msg.value==''){
+				alert('请输入留言内容！！')
+			}else{
+				let div=document.createElement("div");
+				div.style.display='block';
+				div.style.height=24+'px'
+				div.innerHTML="第"+a+"条留言："+msg.value;	
+								
+				let btn=document.createElement('button');
+				btn.innerText="删除";	
+				div.appendChild(btn)
+				btn.style.float="right";
+				btn.onclick=function(){
+					if(confirm('你确认删除嘛？')){
+						div.parentElement.removeChild(div);
+						alert("删除成功！");
+					}else{
+						alert("你取消了删除！")
+					}
+					
+				}	
+					
+				let pEl=document.querySelector("#par");
+				pEl.appendChild(div);  
+				msg.value='';
+				a++;
+			}           
+        })
+    </script>
+</body>
+</html>

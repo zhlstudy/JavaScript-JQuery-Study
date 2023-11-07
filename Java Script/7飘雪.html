@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background-color: black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+		
+		<script>
+			// 画布对象
+			let canvas=document.getElementById('mycanvas');
+			//笔  2D 渲染上下文对象可用于画布的绘制、样式的设置、文本的绘制、图像处理等操作。
+			let context=canvas.getContext('2d');
+			let w=window.innerWidth;
+			let h=window.innerHeight;
+			// 画布的高宽是   window窗体的宽高
+			canvas.width=w;
+			canvas.height=h;
+			
+			
+			let num=200;//雪花的数量
+			let snws=[];
+			for(let i=0;i<num;i++){
+				// 每次循环都会数组中添加
+				snws.push({
+					x:Math.random()*w,
+					y:Math.random()*h,
+					r:Math.random()*10+1
+				});
+			}
+			let move=()=>{
+				for(let i=0;i<num;i++){
+					let snow=snws[i];
+					snow.x +=Math.random()*2+1;
+					snow.y +=Math.random()*2+1;
+					if(snow.x>w){
+						snow.x=0
+					}
+					if(snow.y>h){
+						snow.y=0
+					}
+				}
+			}
+			//画的方法
+			let draw=()=>{
+				//将画布上的东西清除
+				context.clearRect(0,0,w,h);
+				//开始画
+				context.beginPath();
+				context.fillStyle='rgb(255,255,255)';
+				//阴影
+				context.shadowColor='rgb(255,255,255)';
+				context.shadowBlur=10;
+				
+				for(let i=0;i<num;i++){
+					let snow=snws[i];
+					context.moveTo(snow.x,snow.y);
+					context.arc(snow.x,snow.y,snow.r,0,Math.PI*2)
+				}
+				context.fill();
+				context.closePath();
+				move();				
+			}
+			
+			draw();
+			setInterval(draw,30)
+		</script>
+	</body>
+</html>

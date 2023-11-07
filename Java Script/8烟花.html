@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				height: 100vh;
+				overflow: hidden;
+			}
+			
+			#mycanvas {
+				
+				background-color: #000;
+			}			
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+		<script>
+			// 画布对象
+			const canvas = document.getElementById('mycanvas');
+			//笔  2D 渲染上下文对象可用于画布的绘制、样式的设置、文本的绘制、图像处理等操作。
+			const ctx = canvas.getContext('2d');
+			// 画布的高宽是   window窗体的宽高
+			canvas.width = window.innerWidth;;
+			canvas.height = window.innerHeight;
+			
+			// 把方法和坐标都放在一个类里面
+			class Ball {	
+				// 类中的constructor()方法是一个特殊的方法，它会在创建对象实例时被自动调用，用来初始化对象的属性值。
+				constructor(x, y, dirx, diry, color) {
+					this.x = x;
+					this.y = y;
+					// 方向
+					this.dirx = dirx;
+					this.diry = diry;
+					this.color = color;
+					// 透明度量
+					this.opcity=4;
+				}
+				draw() {
+					// 即开始一次新的绘制。
+					ctx.beginPath();
+					ctx.fillStyle = this.color;
+					ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+					ctx.fill();
+					ctx.closePath()
+				}
+				update() { //现在update这会就相当于一个定时器
+					this.dirx *= 0.99;
+					this.diry *= 0.99;
+										
+					this.diry += 0.1;
+					this.x += this.dirx;
+					this.y += this.diry;
+					// 透明量变小 
+					this.opcity -=0.02;					
+					this.draw()
+				}
+			}
+
+			//点击一次只创建一个，需要的是一次创建很多个   创建一个数组来装他们
+			var balls = [];
+			// 添加一个函数一直执行修改函数
+			function animate() {
+				// 设置上一次的颜色
+				ctx.fillStyle='rgba(0,0,0,0.05)';
+				ctx.fillRect(0,0,canvas.width,canvas.height);
+				// 上面两步相当于给画布重新填充一遍
+				for (let i = 0; i < balls.length; i++) {
+					balls[i].update();
+					// 透明色变小后删除
+					if(balls[i].opcity<0.1){
+						balls.splice(i,1)
+					}					
+				}
+				// 重复执行动画
+				requestAnimationFrame(animate)
+			}
+			animate();
+			
+			// 给画布添加一个点击事件
+			canvas.addEventListener("click", (e) => {	
+				// 点击的时候就创建多个
+				let num = 400;
+				// 创建偏移弧度
+				let hd = Math.PI * 2 / num;
+				//循环创建
+				for (let i = 0; i < num; i++) {
+					balls.push(new Ball(
+						e.x,
+						e.y,
+						// 爆炸方向
+						Math.cos(hd * i) * (Math.random() * 10),
+						Math.sin(hd * i) * (Math.random() * 10),
+						// 添加一个随机颜色
+						`hsl(${Math.random()*360},50%,50%)`
+					))
+				}
+			})
+		</script>
+		
+		
+		
+	</body>
+</html>

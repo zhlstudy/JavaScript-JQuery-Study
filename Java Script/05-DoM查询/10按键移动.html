@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#box1{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="box1">
+			
+		</div>
+		<script>
+			var box=document.getElementById('box1');
+			document.onkeydown=function(event){
+				event=event||window.event;
+				
+				var speed=10;
+				
+				if(event.ctrlKey){
+					speed=50;
+				}
+				
+				switch(event.keyCode){
+					case 37://左
+					    box.style.left=box.offsetLeft - speed+'px';					    
+						break;
+					case 38://上
+					    box.style.top=box.offsetTop - speed+'px';					    
+						break;
+					case 39://右
+					    box.style.left=box.offsetLeft + speed+'px';					   
+						break;
+					case 40://下
+					    box.style.top=box.offsetTop + speed+'px';					    
+						break;
+				}
+			}
+		</script>
+	</body>
+</html>

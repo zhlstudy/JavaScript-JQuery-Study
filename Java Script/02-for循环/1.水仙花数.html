@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			for(var i=100;i<1000;i++){
+				//获取百位
+				var bai=parseInt(i/100);
+				//获取十位
+				//去掉百位 再除以10 取整
+				var shi=parseInt((i-bai*100)/10);
+				//获取各位  直接除以100的余数  %
+				var ge=i%10;
+				
+				//判断是否为水仙花数
+				if(bai*bai*bai + shi*shi*shi + ge*ge*ge==i){
+					console.log(i);
+				}
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

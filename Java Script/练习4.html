@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.a {
+				width: 200px;
+				float: left;
+				height: 300px;
+
+				border: 1px black solid;
+			}
+
+			.a li {
+				text-align: center;
+				height: 24px;
+				line-height: 24px;
+				list-style: none;
+			}
+
+			.qqq {
+				background-color: aqua;
+			}
+
+			.b {
+				width: 61px;
+				padding-top: 40px;
+				float: left;
+			}
+
+			.c {
+				float: left;
+				width: 200px;
+				height: 300px;
+				border: 1px black solid;
+			}
+
+			.c li {
+				text-align: center;
+				height: 24px;
+				line-height: 24px;
+				list-style: none;
+			}
+
+
+
+
+		</style>
+		<script src="jquery.js"></script>
+		<script>
+			$(document).ready(function() {
+				// $("li").click(function(){
+				// 	var $li=$(this)
+				// 	$li.toggleClass("qqq")
+
+				// 	$("#you").click(function(){						
+				// 		$(".c").append($li)									 
+				// 		$(".a").remove($li)	
+				// 		let li = $(".c .qqq")
+				// 			for (let i = 0; i < li.length; i++) {
+				// 				li[i].classList = ""
+				// 			}
+				// 	})
+
+				// 	$("#zuo").click(function(){
+				// 		$(".a").append($li)										
+				// 		$(".c").remove($li)	
+				// 		let li = $(".a .qqq")
+				// 			for (let i = 0; i < li.length; i++) {
+				// 				li[i].classList = ""
+				// 			}
+				// 	})
+				// })			
+				$("li").click(function() {
+					$(this).toggleClass("qqq")
+				})
+				$("#you").click(function() {
+					let li = $(".a  .qqq")
+					for (let i = 0; i < li.length; i++) {
+						li[i].classList = ""
+					}
+					$(".c").append(li)
+					$(".a").remove(li)
+				})
+
+				$("#zuo").click(function() {
+					let li = $(".c .qqq")
+					for (let i = 0; i < li.length; i++) {
+						li[i].classList = ""
+					}
+					$(".a").append(li)
+					$(".c").remove(li)
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div class="a">
+			<li>111111</li>
+			<li>222222</li>
+			<li>333333</li>
+			<li>444444</li>
+			<li>555555</li>
+
+		</div>
+		<div class="b">
+			<button id="you">====》</button>
+			<button id="zuo">《====</button>
+		</div>
+		<div class="c">
+			<li>aaaaaa</li>
+			<li>bbbbbb</li>
+			<li>cccccc</li>
+		</div>
+
+
+		
+	</body>
+</html>

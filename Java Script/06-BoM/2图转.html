@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../tool.js"></script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#a1{
+				width: 520px;
+				height: 320px;
+				margin: 40px auto;
+				background-color: aqua;
+				position: relative;
+				overflow: hidden;
+			}
+			#imgList img{
+				margin: 10px;
+				width: 500px;
+				height: 300px;
+			}
+			#imgList{
+				list-style: none;
+			
+				position: absolute;
+			}
+			#imgList li{
+				float: left;
+			}
+			
+			
+			/* 设置导航按钮 */
+			#navDiv{
+				position: absolute;
+				
+				bottom: 15px;
+				/* left: 185px; */
+			}
+			#navDiv a{
+				float: left;
+				width: 15px;
+				height: 15px;
+				background-color: rebeccapurple;
+				margin: 0 5px;
+				opacity: 0.5;
+			}
+			#navDiv a:hover{
+				background-color: black;
+				opacity: 0.5;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="a1">
+			<ul id="imgList">
+				<li><img src="../img/game1/img1.jpg" alt=""></li>
+				<li><img src="../img/game1/img2.jpg" alt=""></li>
+				<li><img src="../img/game1/img3.jpg" alt=""></li>
+				<li><img src="../img/game1/img4.jpg" alt=""></li>
+				<li><img src="../img/game1/img5.jpg" alt=""></li>
+				<li><img src="../img/game1/img6.jpg" alt=""></li>
+			</ul>
+			<div id="navDiv">
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"></a>
+			</div>
+		</div>
+		
+		
+		<script>
+			var imgList=document.getElementById("imgList")
+			
+			var imgArr=document.getElementsByTagName("img");
+			//设置imgList的宽度
+			imgList.style.width=520*imgArr.length+"px";
+			// 设置导航按钮居中
+			var navDiv=document.getElementById("navDiv");
+			
+			var outer=document.getElementById("a1");
+			navDiv.style.left=(outer.offsetWidth-navDiv.offsetWidth)/2+"px";
+			
+			// 获取所有的a
+			var allA=document.getElementsByTagName('a');
+			// 默认显示选中图片的索引
+			var index=0;
+			
+			allA[index].style.backgroundColor="black";
+			
+			
+			/**
+			 * 点击超链接切换到指定图片
+			 */
+			for(let i=0;i<allA.length;i++){
+				allA[i].num=i;
+				
+				allA[i].onclick=function(){
+					//获取点击超链接的索引
+					index=this.num;
+					
+					//imgList.style.left=-520*index+"px";
+					setA();
+					
+					move(imgList,-520*index,20);
+				};
+			};
+			
+			
+			// 创建一个方法来设置选中的a
+			function setA(){
+				for(let i=0;i<allA.length;i++){
+					allA[i].style.backgroundColor="";
+				}
+				
+				allA[index].style.backgroundColor="black";
+			}
+		</script>
+	</body>
+</html>

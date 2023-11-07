@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			div{
+				border: 1px black solid;
+			}
+			#areDiv{
+				width: 400px;
+				height: 200px;
+				margin-bottom: 20px;
+			}
+			#showMsg{
+				width: 400px;
+				height: 50px;
+			}
+		</style>
+		<script>
+			window.onload=function(){
+				/**
+				 * 显示鼠标的坐标
+				 */
+				//获取两个Div
+				var areDiv=document.getElementById('areDiv');
+				var showMsg=document.getElementById('showMsg');
+				
+				/**
+				 * onmousemove
+				 *  - 该事件将会再元素中移动时触发
+				 * 
+				 * 
+				 * 事件对象
+				 *  - 当事件的响应被触发时浏览器都会将一个事件对象作为实参传递响应函数
+				 *           
+				 */
+				if(!event){
+					event=window.event;
+				}
+				
+				areDiv.onmousemove=function(event){
+					//clientX 获取鼠标X坐标
+					//clientY 获取鼠标Y坐标
+					var x=event.clientX;
+					var y=event.clientY;
+					
+					
+					//再showMsg中显示
+					showMsg.innerHTML="X ="+x+", Y ="+y;
+					
+				};
+			}
+		</script>
+		
+	</head>
+	<body>
+		<div id="areDiv">
+			
+		</div>
+		<div id="showMsg">
+			
+		</div>
+		
+	</body>
+</html>

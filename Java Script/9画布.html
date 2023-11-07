@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			height: 100vh;
+			overflow: hidden;
+		}
+
+		#mycanvas {
+			background-color: black;
+		}
+	</style>
+	<body>
+		<canvas id="mycanvas"></canvas>
+
+
+		<script type="text/javascript">
+			let canvars = document.getElementById('mycanvas');
+			let ctx = canvars.getContext("2d");
+			canvars.width = window.innerWidth;
+			canvars.height = window.innerHeight;
+
+
+			// 鼠标位置
+			const mouse = {
+				x: 0,
+				y: 0
+			}
+			// 颜色
+			var color = 0;
+			//定义一个小刺类
+			class Ball {
+				// 类中的constructor()方法是一个特殊的方法，它会在创建对象实例时被自动调用，用来初始化对象的属性值。
+				constructor() {
+					// 位置
+					this.x = mouse.x;
+					this.y = mouse.y;
+					// 行进方向
+					this.speedX = Math.random() * 3 - 1.5;
+					this.speedY = Math.random() * 3 - 1.5;
+					// 大小
+					this.size = Math.random() * 8 + 1;
+					// 颜色          `hsl(${color},100%,50%)`颜色表示方式  
+					//               ${color} 是一个0到360之间的数字，表示色相（hue）的角度值。
+					//               100% 表示饱和度（saturation）为100%，即完全饱和的颜色。
+					//               50% 表示亮度（lightness）为50%，即颜色的中间亮度值。
+					this.color = `hsl(${color},100%,50%)`;
+				}
+				draw() {
+					ctx.fillStyle = this.color;
+					ctx.beginPath();
+					ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+					ctx.fill();
+				}
+				update() {
+					this.x += this.speedX;
+					this.y += this.speedY;
+					if (this.size > 0.3) this.size -= 0.1;
+				}
+			}
+			// 小刺容器
+			var Balls = [];
+			// 处理小刺
+			function handleBall() {
+				for (let i = 0; i < Balls.length; i++) {
+					Balls[i].update();
+					Balls[i].draw();
+					// 删除多余的小刺
+					if (Balls[i].size < 0.3) {
+						Balls.splice(i, 1)
+					}
+				}
+			}
+			// 动画
+			function animation() {
+				// 设置上一次的颜色
+				ctx.fillStyle = "rgba(0,0,0,0.05)";
+				ctx.fillRect(0, 0, canvars.width, canvars.height);
+				handleBall();
+				color += 5
+			}
+			setInterval(() => {
+				animation()
+			}, 10)
+			// // 测试
+			// function text() {
+			// 	mouse.x = 100;
+			// 	mouse.y = 100;
+			// 	for (let i = 0; i < 20; i++) {
+			// 		Balls.push(new Ball())
+			// 	}
+			// }
+			// text()
+			canvars.addEventListener("mousemove",(e)=>{
+				mouse.x=e.x;
+				mouse.y=e.y;
+				// 每次创建20个
+				for (let i = 0; i < 20; i++) {
+						Balls.push(new Ball())
+					}
+				
+			})
+			
+			
+		</script>
+	</body>
+</html>

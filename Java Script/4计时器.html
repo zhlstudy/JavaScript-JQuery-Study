@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		<script>
+			window.onload=function(){
+				var myintervalId;
+				
+				document.getElementById('btn1').onclick=function(){
+					clearInterval(myintervalId)   //关闭上一个定时器
+					
+					myintervalId=setInterval(function(){						
+						// var txtObj=document.getElementById('txt1');
+						// var num=parseInt(txtObj.value);
+						// num +=1;
+						// txtObj.value=num;
+						document.getElementById('txt1').value++;
+					},1000);
+				}
+				
+				document.getElementById('btn2').onclick=function(){
+					clearInterval(myintervalId)
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<p style="text-align: center;">用setInterval()方法创建一个计时器</p>
+		<input id="txt1" type="text" name="name" value="0" style="color: aqua;background-color:darkgoldenrod;">
+		<input id="btn1" type="button" name="name" value="开始" >
+		<input id="btn2" type="button" name="name" value="结束" >
+	</body>
+</html>

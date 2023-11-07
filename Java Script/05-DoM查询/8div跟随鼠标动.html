@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#box1{
+				width: 100px;
+				height: 100px;
+				background-color: aqua;
+			    /* 开启绝对定位 */
+				position: absolute;
+			}
+		</style>
+		
+		<script>
+			window.onload=function(){
+				
+				var box1=document.getElementById('box1');
+				
+				document.onmousemove=function(event){
+					//解决兼容问题
+					event=event||window.event;
+					
+					//获取 滚动条的距离
+					//前者是body.scrolltop 来获取的 后者是Html   处理兼容 谁有就用谁
+					var st=document.body.scrollTop||document.documentElement.scrollTop;
+					var sl=document.body.scrollLeft||document.documentElement.scrollLeft;
+					
+					//获取到鼠标的坐标
+					var left=event.clientX;   //对于整个网页的坐标
+					var top=event.clientY;
+					// var left=event.pageX;   //对于当前页面来说 IE8不支持
+					// var top=event.pageY;
+					//设置div的偏移量
+					box1.style.left=left+sl+"px";
+					box1.style.top=top+st+"px";
+					
+				}
+				
+				
+				
+			};
+		</script>
+	</head>
+	<body style="height: 1000px; width: 2000px;">
+		<div id="box1">
+			
+		</div>
+	</body>
+</html>

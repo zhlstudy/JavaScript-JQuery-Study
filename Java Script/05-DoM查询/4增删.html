@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 删除tr的响应函数
+			 */
+			function delA(){
+				//点击删除就删除所在这一行
+				//获取当前tr
+				var tr=this.parentNode.parentNode;
+				
+				
+				//获取要删除员工的名字
+				//var name=tr.getElementsByTagName("td")[0].innerHTML;
+				var name=tr.children[0].innerHTML;
+				
+				
+				//提示框confirm() 带有确认取消的按钮 确认返回true 取消false
+				var  flag = confirm("确认删除"+name+"吗？");
+				
+				if(flag){
+					//删除tr
+					tr.parentNode.removeChild(tr);
+				}		
+						
+				//点击超链接会跳转 默认  return false来取消默认行为
+				return false;
+			}
+			
+			
+			
+			window.onload=function(){
+				/**
+				 * 点击超链接后删除一个信息
+				 */
+				//获取所有超链接
+				var allA=document.getElementsByTagName("a");
+				for (var i = 0; i < allA.length; i++) {
+					allA[i].onclick=delA;					
+				}
+				
+				
+				//添加员工的功能
+				var addEmpButton=document.getElementById("addEmpButton");
+				addEmpButton.onclick=function(){
+					//获取添加的员工的信息
+					var name=document.getElementById("emName").value;
+					var Email=document.getElementById("Email").value;
+					var Salary=document.getElementById("Salary").value;
+					// <tr>
+					// 	<th>Tom</th>
+					// 	<th>tom@tom.com</th>
+					// 	<th>5000</th>
+					// 	<th><a href="delteEmp?id="001">Delete</a></th>
+					// </tr>  需要将获取到的信息保存到tr中
+					
+					//创建一个tr
+					var tr=document.createElement("tr");
+					// //创建四个td
+					// var nameTd=document.createElement("td");
+					// var EmailTd=document.createElement("td");
+					// var SalaryTd=document.createElement("td");
+					// var aTd=document.createElement("td");
+					// //创建一个a元素
+					// var a=document.createElement("a");
+					
+					// //创建文本节点
+					// var nameText=document.createTextNode(name);
+					// var EmailText=document.createTextNode(Email);
+					// var SalaryText=document.createTextNode(Salary);
+					// var delText=document.createTextNode("Delete");
+					
+					// //将文本添加到td中
+					// nameTd.appendChild(nameText);
+					// EmailTd.appendChild(EmailText);
+					// SalaryTd.appendChild(SalaryText);
+					
+					// //向a中添加文本
+					// a.appendChild(delText);
+					// //将a添加到td中
+					// aTd.appendChild(a);
+					
+					// //将td添加到tr中
+					// tr.appendChild(nameTd);
+					// tr.appendChild(EmailTd);
+					// tr.appendChild(SalaryTd);
+					// tr.appendChild(aTd);
+					
+					// //向a中添加href属性
+					// a.href="javascript:;";
+					// /**
+					//  * 为新添加的a再绑定一次单击响应函数
+					//  */
+					// a.onclick=delA;
+					
+					//设置tr中的内容
+					tr.innerHTML="<td>"+name+"</td>"+
+					             "<td>"+Email+"</td>"+
+								 "<td>"+Salary+"</td>"+
+								 "<td><a href='javascript:;'>Delete</a></td>";
+					
+					//获取刚刚添加的a元素
+					var a=tr.getElementsByTagName("a")[0];
+					a.onclick=delA;
+					
+					
+					//获取table
+					var employeelable=document.getElementById("employeelable");
+					//获取employeelable中的tbody
+					var tbody=employeelable.getElementsByTagName("tbody")[0];
+					//将tbody添加到table
+					tbody.appendChild(tr);
+					
+					
+				};
+				
+				
+			};
+		</script>
+	</head>
+	<body>
+		<table id="employeelable">
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Salary</th>
+				<th>&nbsp</th>
+			</tr>
+			<tr>
+				<th>Tom</th>
+				<th>tom@tom.com</th>
+				<th>5000</th>
+				<th><a href="delteEmp?id="001">Delete</a></th>
+			</tr>
+			<tr>
+				<th>Jou</th>
+				<th>jou@jou.com</th>
+				<th>6000</th>
+				<th><a href="delteEmp?id="002">Delete</a></th>
+			</tr>
+			<tr>
+				<th>Bou</th>
+				<th>Bou@Bou.com</th>
+				<th>9000</th>
+				<th><a href="delteEmp?id="003">Delete</a></th>
+			</tr>
+		</table>
+		<div id="formDiv">
+			<h4>添加新员工</h4>
+			<table>
+				<tr>
+					<td class="word">name: </td>
+					<td class="inp">
+						<input type="txet" name="emName" id="emName"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="word">Email: </td>
+					<td class="inp">
+						<input type="txet" name="Email" id="Email"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="word">Salary: </td>
+					<td class="inp">
+						<input type="txet" name="Salary" id="Salary"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<button id="addEmpButton" value="abc">Submit</button>
+					</td>
+				</tr>
+			</table>
+			
+		</div>
+		
+	</body>
+</html>

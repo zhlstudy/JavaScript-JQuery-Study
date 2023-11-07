@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<script src="jquery.js"></script>
+    <style>
+        body{
+            background-color: #ccc;
+            text-align: center;
+        }
+        .login{
+            margin: 0 auto;
+            display: inline-block;
+            padding: 10px;
+            background-color: white;
+        }
+        .row{
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .row  button{
+            background-color: rgb(51,136,255);
+            color: white;
+            border: none;
+            display: block;
+            margin: 0 auto;
+            width: 100px;
+            padding: 5px 0px;
+        }
+    </style>
+</head>
+<body>
+      <div class="login">
+        <div class="row">
+            <div>用户名：</div>
+            <div>
+                <input type="text" id="username" />
+            </div>
+        </div>
+        <div class="row">
+            <div>密&nbsp;&nbsp;&nbsp;码：</div>
+            <div>
+                <input type="password" id="password" />
+            </div>
+        </div>
+        <div class="row">
+            <button>登录</button>
+        </div>
+      </div>
+      <script>
+            let username=document.querySelector("#username");           
+			let password=document.querySelector("#password");
+			let btn=document.querySelector('button');
+			btn.onclick=function(){
+				if(password.value==""||username.value==""){
+					password.addEventListener('blur',function(){
+					      if(password.value===""){
+							  tishi.style.display='block';
+							  tishi.style.color='red'
+					          tishi.innerText='密码	不能为空！'
+							  setTimeout(function(){ 
+								  tishi.style.display='none';
+								  },2000)
+					      }
+					});
+					//  获取焦点的事件  focus 失去焦点   blur
+					username.addEventListener('blur',function(){
+					      if(username.value===""){
+							  tishi.style.display='block';
+							  tishi.style.color='red'
+					          tishi.innerText='用户名不能为空！'
+							  setTimeout(function(){
+							  			tishi.style.display='none';
+							  		},2000)
+					      }
+					});
+				}else{
+					tishi.style.display='block';
+					tishi.style.color='blue'
+					tishi.innerText='登录格式正确！'
+					setTimeout(function(){
+		                     tishi.style.display='none';
+							 },2000)
+				    
+				}				
+			}
+						
+			let tishi=document.createElement('div');
+			tishi.style.height=30+'px';
+			tishi.style.lineHeight=30+'px';			
+			tishi.style.backgroundColor= 'white';
+			tishi.style.margin=10+'px';
+			tishi.style.paddingLeft=30+'px'
+			tishi.style.display='none';
+			let login=document.getElementsByClassName('login')[0];
+			login.parentElement.insertBefore(tishi,login);
+			
+			
+      </script>
+</body>
+</html>
